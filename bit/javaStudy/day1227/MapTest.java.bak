@@ -1,0 +1,14 @@
+import java.util.HashMap;
+
+class MapTest {
+	public static void main(String[] args) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("hello", 2);
+		map.put("java", 1);
+		
+//		int n = map.get("hello");
+//		int n = map.get("korea"); // 예외 오류
+		Integer n = map.get("korea");
+		System.out.println(n);
+	}
+}

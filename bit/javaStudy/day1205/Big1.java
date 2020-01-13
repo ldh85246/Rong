@@ -1,0 +1,20 @@
+// 연습) 사용자한테 두개의 정수를 입력받아 그중에 큰 수를 찾아 출력하는 프로그램
+//			단, 삼항연산자를 이용합니다.
+
+import java.util.Scanner;
+
+class Big1 {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+
+		int a, b;
+			System.out.print("첫번째 수를 입력하세요.");
+			a = scan.nextInt();
+
+			System.out.print("두번째 수를 입력하세요.");
+			b = scan.nextInt();
+
+		int i = (a > b) ? a : b;
+			System.out.println("입력한 수 중에 큰 수는 " + i + " 입니다.");
+	}
+}

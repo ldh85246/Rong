@@ -1,0 +1,29 @@
+class Person {
+	private String name;
+	private int age;
+	public String toString() {
+		return name + ", " + age;
+	}
+	public Person() {
+		/*
+		name = "홍길동";
+		age = 20;
+		*/
+		this("홍길동", 20);
+		System.out.println("생성자 동작");
+	}
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+}
+
+class PersonTest {
+	public static void main(String[] args) {
+	Person p1 = new Person("이수인", 28);
+	System.out.println(p1);
+
+	Person p2 = new Person();
+	System.out.println(p2);
+	}
+}

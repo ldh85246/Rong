@@ -1,0 +1,31 @@
+class MethodTest04 {
+	// n을 매개변수로 전달받아 1에서 n까지의 합을 누적하여 출력하는 메소드를 정의하고 호출
+	public static void sum(int n) {
+		int tot = 0;
+		for (int i = 1; i <= n; i++) {
+			tot = tot + i;
+		}
+	System.out.println("1에서 " + n + "까지의 합은 : " + tot);
+	return; // 메소드를 호출할 시 return은 자동 포함되어 있는 개념
+	}
+
+	public static void gugudan(int x) {
+		System.out.println(x + "단");
+		for (int i = 1; i <= 9; i++) {
+			System.out.println(x + " * " + i + " = " + (x * i));
+		}
+	}
+
+	public static void plus(int a, int b) {
+		int r = a + b;
+		System.out.println("더하기 결과 : " + r);
+	}
+
+	public static void main(String[] args) {
+		sum(5);
+		sum(100);
+		gugudan(2);
+		gugudan(7);
+		plus(2, 3);
+	}
+}

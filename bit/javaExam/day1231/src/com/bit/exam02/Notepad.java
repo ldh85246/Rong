@@ -1,0 +1,96 @@
+package com.bit.exam02;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class Notepad extends JFrame implements ActionListener {
+	JTextArea jta;
+	JFileChooser jfc;
+
+	public Notepad() {
+		setTitle("제목없음");
+		jfc = new JFileChooser("c:/javaExam");
+
+		jta = new JTextArea();
+		JScrollPane jsp = new JScrollPane(jta);
+		add(jsp, BorderLayout.CENTER);
+
+		JMenuBar jmb = new JMenuBar();
+		JMenu menu_file = new JMenu("파일");
+		JMenuItem item_new = new JMenuItem("새파일");
+		JMenuItem item_open = new JMenuItem("열기");
+		JMenuItem item_save = new JMenuItem("저장");
+
+		menu_file.add(item_new);
+		menu_file.add(item_open);
+		menu_file.add(item_save);
+
+		jmb.add(menu_file);
+
+		setJMenuBar(jmb);
+
+		item_new.addActionListener(this);
+		item_open.addActionListener(this);
+		item_save.addActionListener(this);
+
+		setSize(400, 300);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		String cmd = e.getActionCommand();
+
+		if (cmd.equals("새파일")) {
+			jta.setText("");
+		} else if (cmd.equals("열기")) {
+			try {
+				int re = jfc.showOpenDialog(null);
+				File file = jfc.getSelectedFile();
+				FileReader fr = new FileReader(file);
+				String str = "";
+				int ch;
+
+				while ((ch = fr.read()) != -1) {
+					str = str + (char) ch;
+				}
+				fr.close();
+				jta.setText(str);
+				setTitle(file.getName());
+			} catch (Exception ex) {
+				System.out.println(ex.getMessage());
+			}
+		} else if (cmd.equals("저장")) {
+			String str = jta.getText();
+
+			int re = jfc.showSaveDialog(null);
+
+			if (re == 0) {
+				File file = jfc.getSelectedFile();
+				try {
+					FileWriter fw = new FileWriter(file + ".txt");
+					fw.write(str);
+					fw.close();
+				} catch (Exception ex) {
+					System.out.println(ex.getMessage());
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		new Notepad();
+	}
+}

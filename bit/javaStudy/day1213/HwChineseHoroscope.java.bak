@@ -1,0 +1,8 @@
+class Constellation {
+}
+
+class ChineseHoroscope {
+	public static void main(String[] args) {
+		
+	}
+}

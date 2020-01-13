@@ -1,0 +1,10 @@
+class ReturnMethodTest02 {
+	public static int/* 리턴 값이 없다는 뜻 */ plus(int a, int b) {
+		int r = a + b;
+		return r;
+	}
+	public static void main(String[] args) {
+		int r = plus(2, 3);
+		System.out.println("결과 : " + r);
+	}
+}

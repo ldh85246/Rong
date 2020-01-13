@@ -1,0 +1,33 @@
+class Animal {
+
+}
+
+class Tiger extends Animal {
+}
+
+class Lion extends Animal {
+}
+
+class Cage {
+	private Animal animal;
+
+	public Animal getAnimal(){
+		return animal;
+	}
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
+}
+
+class CageTest {
+	public static void main(String[] args) {
+		Cage cage = new Cage();
+		Lion a = new Lion();
+		cage.setAnimal(a);
+		Tiger t = (Tiger)cage.getAnimal();
+		System.out.println("ok");
+
+		// Lion a = new Lion();
+		// Tiger b = (Tiger)a;
+	}
+}

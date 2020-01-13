@@ -1,0 +1,19 @@
+// 사용자한테 소문자로 된 문자열을 입력받아 대문자로 변경하는 프로그램
+
+import java.util.Scanner;
+
+class ToUpper{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String str;
+		System.out.println("*** 소문자를 대문자로 변환 ***");
+		System.out.print("소문자 단어를 입력하세요 ===> ");
+		// str = scan.next(); // ex) hello로 썼다면..?
+		str = scan.nextLine();
+
+		for(int i = 0; i < str.length(); i = i + 1) {
+			char ch1 = str.charAt(i);
+			System.out.print((char)(ch1 - 32));
+		}
+	}
+}
