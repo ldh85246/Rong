@@ -1,0 +1,76 @@
+class Human {
+	protected String name;
+	protected int age;
+
+	public Human(String name, int age) {
+        this.name = name;
+        this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String toString() {
+		return name + ", " + age;
+	}
+
+	public String getProfession() {
+		return null;
+	}
+
+	public static void main(String[] args) {
+		Human h1 = new Human("춘향", 18);
+		Human h2 = new Human("몽룡", 21);
+		Human h3 = new Human("사또", 50);
+
+		System.out.println(h1.toString());
+		System.out.println(h2);
+		System.out.println(h3);
+	}
+}
+
+class Student extends Human {
+	public static String profession = ", 학생";
+	private String major;
+
+	public Student(String name, int age, String major) {
+		super(name, age);
+		this.major = major;
+	}
+
+	public String toString() {
+		return super.toString() + ", " + major;
+	}
+
+	public String getProfession() {
+		return profession;
+	}
+}
+
+class StudentTest {
+	public static void main(String[] args) {
+		Student s1 = new Student("홍길동", 20, "컴퓨터과학");
+		Student s2 = new Student("이순신", 21, "경영정보");
+		Student s3 = new Student("유관순", 20, "스포츠과학");
+
+		System.out.println(s1 + s1.getProfession());
+		System.out.println(s2 + s1.getProfession());
+		System.out.println(s3 + s1.getProfession());
+
+		Human h1 = new Human("안철수", 7);
+		System.out.println(h1 + h1.getProfession());
+	}
+}

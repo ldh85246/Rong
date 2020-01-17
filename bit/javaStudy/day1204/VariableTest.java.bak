@@ -1,0 +1,17 @@
+class VariableTest {
+	public static void main(String[] args) {
+		String name;
+		int age;
+		name = "°û¾Æ¸§";
+		age = 26;
+		System.out.println(name);
+		System.out.println(age);
+
+		String name2;
+		int age2;
+		name2 = "°û¾Æ¸§";
+		age2 = 26;
+		System.out.println(name2);
+		System.out.println(age2);
+	}
+}

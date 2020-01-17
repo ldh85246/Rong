@@ -1,0 +1,10 @@
+class  CharTest2 {
+	public static void main(String[] args) {
+		String name;
+		name = "홍길동";
+		char firstName = name.charAt(0);
+		System.out.println(firstName);
+		//name으로부터 첫번째 자리의 글자만 뽑아와서 출력해 봅니다.
+		//name.charAt(5) - 다싯번째 자리를 불러올 때
+		}
+}

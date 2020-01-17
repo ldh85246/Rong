@@ -1,0 +1,9 @@
+class StringTest03 {
+	public static void main(String[] args) {
+		String data = "¾È³ç È«±æµ¿";
+		// String r = data.replace("¾È³ç", "Hello");
+		data = data.replace("¾È³ç", "Hello");
+		// System.out.println(data);
+		System.out.println(r);
+	}
+}

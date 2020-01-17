@@ -1,0 +1,44 @@
+class Book {
+	protected int number;
+	protected String title;
+	protected String author;
+	public int getLateFees(int day);
+
+	public Book(int number, String title, String author) {
+		this.number = number;
+		this.title = title;
+		this.author = author;
+	}
+
+	public boolean equals(Object obj) {
+		Book b = (Book)obj;
+		if (number == b.number) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public String toString() {
+		return "\n관리번호 : " + number + "\n제목 : " + title + "\n저자 : " + author + "\n";
+	}
+}
+
+class BookTest03 {
+	public static void main(String[] args) {
+		Book b1 = new Book(100, "재미있는 자바", "이원우");
+		Book b2 = new Book(100, "재미있는 자바", "이원우2");
+
+		if (b1.equals(b2)) {
+			System.out.println("ㅇㅇ");
+		}
+		else {
+			System.out.println("ㄴㄴ");
+		}
+	}
+}

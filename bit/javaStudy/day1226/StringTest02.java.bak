@@ -1,0 +1,10 @@
+class StringTest02 {
+	public static void main(String[] args) {
+		String str = "   Hello   ";
+		System.out.println("|" + str + "|");
+		System.out.println(str.length());
+
+		System.out.println(   "|" + str.trim()  + "|"   );
+		System.out.println("|" + str + "|");
+	}
+}

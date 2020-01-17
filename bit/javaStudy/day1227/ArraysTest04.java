@@ -1,0 +1,44 @@
+import java.util.Arrays;
+
+class Person {
+	private String name;
+	private int age;
+
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	public boolean equals(Object ob) {
+		boolean re = false;
+		Person p = (Person)ob;
+		
+		if (name.equals(p.name) && age == p.age) {
+			re = true;
+		}
+		return re;
+	}
+}
+
+class ArraysTest04 {
+	public static void main(String[] args) {
+		Person p1 = new Person("È«±æµ¿", 20);
+		Person p2 = new Person("È«±æµ¿", 20);
+
+		if (p1.equals(p2)) {
+			System.out.println("µÎ °´Ã¼´Â °°½À´Ï´Ù.");
+		} else {
+			System.out.println("µÎ °´Ã¼´Â ´Ù¸¨´Ï´Ù.");
+		}
+
+		// int[] a = {1, 2, 3};
+		Person[] a = {new Person("È«±æµ¿", 20), new Person("ÀÌ¼ø½Å", 40)};
+		Person[] b = {new Person("È«±æµ¿", 20), new Person("ÀÌ¼ø½Ç", 40)};
+
+		if (Arrays.equals(a, b)) {
+			System.out.println("µÎ °´Ã¼´Â °°½À´Ï´Ù.");
+		} else {
+			System.out.println("µÎ °´Ã¼´Â ´Ù¸¨´Ï´Ù.");
+		}
+	}
+}

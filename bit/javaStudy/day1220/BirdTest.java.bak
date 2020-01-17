@@ -1,0 +1,16 @@
+abstract class Bird {
+	public abstract void sound();
+}
+
+class Dove extends Bird {
+	public void sound() {
+		System.out.println("coo coo");
+	}
+}
+
+class BirdTest {
+	public static void main(String[] args) {
+		Bird b = new Dove();
+		b.sound();
+	}
+}

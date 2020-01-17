@@ -1,0 +1,19 @@
+/*
+현재 시각은 2019년 12월 27일 금요일 14시 51분 30초
+*/
+
+import java.util.Date;
+
+class Date {
+	public String toString() {
+		return "현재 시각은" + d.getYear() + "년" + d.getMonth() + "월" + d.getDay() + "일";
+	}
+}
+
+
+class CurrentTimeTest extends Date {
+	public static void main(String[] args) {
+		String[] yoil = {"일", "월", "화", "수", "목", "금", "토"};
+		System.out.println(d.toString());
+	}
+}

@@ -1,0 +1,129 @@
+import java.util.Scanner;
+
+abstract class Book {
+	protected int number;
+	protected String title;
+	protected String author;
+	abstract public int getLateFees(int day);
+
+	public Book(int number, String title, String author) {
+		this.number = number;
+		this.title = title;
+		this.author = author;
+	}
+
+	public boolean equals(Object obj) {
+		Book b = (Book)obj;
+		if (number == b.number) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String toString() {
+		return "\n관리번호 : " + number + "\n제목 : " + title + "\n저자 : " + author + "\n";
+	}
+}
+
+class Novel extends Book {
+	public Novel(int number, String title, String author) {
+		super(number, title, author);
+	}
+
+	public int getLateFees(int day) {
+		return day * 300;
+	}
+
+/*
+	public String toString() {
+		return super.toString() + ", 연체료 : ";
+	}
+*/
+}
+
+class Poet extends Book {
+	public Poet(int number, String title, String author) {
+		super(number, title, author);
+	}
+
+	public int getLateFees(int day) {
+		return day * 200;
+	}
+
+/*
+	public String toString() {
+		return super.toString() + ", 연체료 : ";
+	}
+*/
+}
+
+class ScienceFiction extends Book {
+	public ScienceFiction(int number, String title, String author) {
+		super(number, title, author);
+	}
+
+	public int getLateFees(int day) {
+		return day * 600;
+	}
+
+/*
+	public String toString() {
+		return super.toString() + ", 연체료 : ";
+	}
+*/
+}
+
+class BookTest02 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		Book[] arr = new Book[5]; // 참조변수[]
+		arr[0] = new Novel(1000, "수인아 놀자", "이원우");
+		arr[1] = new Novel(1001, "재미있는 자바", "이희재");
+		arr[2] = new Novel(1002, "즐거운 자바", "한주련");
+		arr[3] = new Poet(2000, "즐거운 인생", "이원우");
+		arr[4] = new ScienceFiction(3000, "자바의 미래", "서동욱");
+
+		System.out.print("찾을 도서의 관리번호를 입력하세요 ==>");
+		int searchNumer = sc.nextInt();
+
+		int i;
+		// for (Book b : arr) {}
+		for (i = 0 ; i < arr.length; i++) {
+			if (searchNumer == arr[i].getNumber()) {
+				System.out.println("도서를 찾았습니다.");
+				System.out.println(arr[i]);
+				break;
+			}
+		}
+		if (i == arr.length) {
+			System.out.println("찾는 도서가 없습니다.");
+		}
+	}
+}

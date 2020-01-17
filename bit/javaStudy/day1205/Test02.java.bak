@@ -1,0 +1,14 @@
+class Test02 {
+	public static void main(String[] args) {
+		int i = 3;
+		int j = 3;
+
+		int a = i++; // 변수 뒤에 있으면 나중에 증가
+		int b = ++j; // 변수 앞에 있으면 먼저 증가
+
+		System.out.println(i);
+		System.out.println(j);
+		System.out.println(a);
+		System.out.println(b);
+	}
+}
