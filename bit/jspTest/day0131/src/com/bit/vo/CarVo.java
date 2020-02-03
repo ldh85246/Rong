@@ -14,6 +14,6 @@ public class CarVo {
 	private int seats;
 	private int rent_fee;
 	private String fname;
-	private int c_no;
+	private int center_no;
 	private int t_no;
 }

@@ -13,7 +13,7 @@ public class CenterDao {
 	public ArrayList<CenterVo> listAll() {
 		ArrayList<CenterVo> list = new ArrayList<CenterVo>();
 		try {
-			String sql = "select * from center order by c_no";
+			String sql = "select * from center order by center_no";
 			Connection conn = ConnectionProvider.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -33,7 +33,7 @@ public class CenterDao {
 		try {
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, c.getC_no());
+			pstmt.setInt(1, c.getCenter_no());
 			pstmt.setString(2, c.getC_name());
 			pstmt.setString(3, c.getC_tel());
 			pstmt.setString(4, c.getC_addr());

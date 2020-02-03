@@ -10,6 +10,23 @@ import com.bit.db.ConnectionProvider;
 import com.bit.vo.CarVo;
 
 public class CarDao {
+	public ArrayList<CarVo> listAll(){
+		ArrayList<CarVo> list = new ArrayList<CarVo>();
+		try {
+			String sql = "select * from car";
+			Connection conn = ConnectionProvider.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				list.add(new CarVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
+				}
+			ConnectionProvider.close(rs, stmt, conn);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return list;
+	}
+
 	public int insertCar(CarVo c) {
 		int re = -1;
 		String sql = "insert into car values(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -22,7 +39,7 @@ public class CarDao {
 			pstmt.setInt(4, c.getSeats());
 			pstmt.setInt(5, c.getRent_fee());
 			pstmt.setString(6, c.getFname());
-			pstmt.setInt(7, c.getC_no());
+			pstmt.setInt(7, c.getCenter_no());
 			pstmt.setInt(8, c.getT_no());
 			re = pstmt.executeUpdate();
 			ConnectionProvider.close(null, pstmt, conn);
