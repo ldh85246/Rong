@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>상품등록</h2>
+	<hr>
+	<form action="insertGoodsOk.jsp" method="post" enctype="multipart/form-data">
+		<table width="60%">
+			<tr>
+				<td width="100">상품번호</td>
+				<td><input type="number" min="1000" name="no" required="required"></td>
+			</tr>
+			<tr>
+				<td>상품명</td>
+				<td><input type="text" name="item" required="required"></td>
+			</tr>
+			<tr>
+				<td>단가</td>
+				<td><input type="text" name="price" required="required"></td>
+			</tr>
+			<tr>
+				<td>수량</td>
+				<td><select name="qty">
+						<option value="1">1
+						<option value="2">2
+						<option value="3">3
+						<option value="4">4
+						<option value="5">5
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>사진</td>
+				<td><input type="file" name="fname" required="required"></td>
+			</tr>
+			<tr>
+				<td>상세설명</td>
+				<td><textarea rows="10" cols="60" name="detail" required="required"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="등록"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
