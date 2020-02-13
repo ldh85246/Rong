@@ -56,7 +56,7 @@ public class GoodsDao {
 			pstmt.setInt(1, no);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				g.setNo(rs.getInt(no));
+				g.setNo(rs.getInt("no"));
 				g.setItem(rs.getString("item"));
 				g.setPrice(rs.getInt("price"));
 				g.setQty(rs.getInt("qty"));

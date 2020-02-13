@@ -10,11 +10,34 @@ import com.bit.db.ConnectionProvider;
 import com.bit.vo.GoodsVo;
 
 public class GoodsDao {
+	public static int totalRecord;
+	public static int pageSIZE = 3;
+	public static int totalPage;
+	public static int pageGroup = 5;
+
+	public int getTotalRecord() {
+		int n = 0;
+		String sql = "select count(*) from goods";
+		try {
+			Connection conn = ConnectionProvider.getConnection("c##bit1234", "bit1234");
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				n = rs.getInt(1);
+			}
+			ConnectionProvider.close(rs, stmt, conn);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return n;
+	}
+
 	public int insertGoods(GoodsVo g) {
 		int re = -1;
 		String sql = "insert into goods values(seq_board.nextval, ?, ?, ?, ?, ?)";
 		try {
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection("c##bit1234", "bit1234");
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, g.getItem());
 			pstmt.setInt(2, g.getPrice());
@@ -29,18 +52,36 @@ public class GoodsDao {
 		return re;
 	}
 
-	public ArrayList<GoodsVo> listAll() {
+	public ArrayList<GoodsVo> listAll(int pageNUM) {
+		totalRecord = getTotalRecord();
+		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
+		System.out.println("전체페이지수:" + totalPage);
+
 		ArrayList<GoodsVo> list = new ArrayList<GoodsVo>();
+		String sql = "select no,item,price,qty,fname,detail from ("
+				+ " select rownum n, no, item,price,qty,fname,detail from (" + " select * from goods order by no))"
+				+ " where n between ? and ?";
+
+		int start = (pageNUM - 1) * pageSIZE + 1;
+		int end = start + pageSIZE - 1;
+		if (end > totalRecord) {
+			end = totalRecord;
+		}
+
 		try {
-			String sql = "select * from goods order by no desc";
-			Connection conn = ConnectionProvider.getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			Connection conn = ConnectionProvider.getConnection("c##bit1234", "bit1234");
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			ResultSet rs = pstmt.executeQuery();
+
 			while (rs.next()) {
-				list.add(new GoodsVo(rs.getInt("no"), rs.getString("item"), rs.getInt("price"), rs.getInt("qty"),
-						rs.getString("fname"), rs.getString("detail")));
+				list.add(new GoodsVo(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5),
+						rs.getString(6)));
 			}
-			ConnectionProvider.close(rs, stmt, conn);
+
+			ConnectionProvider.close(rs, pstmt, conn);
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -51,7 +92,7 @@ public class GoodsDao {
 		GoodsVo g = new GoodsVo();
 		try {
 			String sql = "select * from goods where no = ?";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection("c##bit1234", "bit1234");
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			ResultSet rs = pstmt.executeQuery();
@@ -73,7 +114,7 @@ public class GoodsDao {
 		int re = -1;
 		String sql = "update into goods set item = ?, price = ?, qty = ?, fname = ?, detail = ? where no = ?";
 		try {
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection("c##bit1234", "bit1234");
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, g.getItem());
 			pstmt.setInt(2, g.getPrice());
@@ -92,7 +133,7 @@ public class GoodsDao {
 		int re = -1;
 		String sql = "delete goods where no = ?";
 		try {
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection("c##bit1234", "bit1234");
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			re = pstmt.executeUpdate();
