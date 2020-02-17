@@ -1,0 +1,28 @@
+table {
+	border-style: dotted;
+	height: 50px;
+	vertical-align: middle;
+}
+
+td {
+	text-align: center;
+}
+
+h2 {
+	color: green;
+	font-type: ±Ã¼­;
+}
+
+body {
+	background: #FFFB98;
+}
+
+#thead {
+	background: gray;
+}
+
+.title {
+	font-size: 20px;
+	color: blue;
+	text-decoration: none;
+}
