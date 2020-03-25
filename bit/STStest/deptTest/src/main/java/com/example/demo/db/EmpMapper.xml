@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+
+  <select id="listManager" resultType="empVo">
+    select * from emp where job != '사원'
+  </select>
+  
+  <insert id="insert">
+    insert into emp values(seq_emp.nextval, #{ename}, #{job}, #{sal}, #{comm}, #{mgr}, sysdate, #{dno}, #{email}, #{jumin})
+  </insert>
+  
+  <select id="listEmpView" resultType="empViewVo">
+    select * from empview
+    <if test="keyword != null and keyword != ''">
+         where ${searchColumn} = #{keyword}
+    </if>
+  </select>
+  
+</mapper>

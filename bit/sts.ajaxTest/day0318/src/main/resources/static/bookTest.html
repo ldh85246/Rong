@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.active {
+	background: yellow;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var arr;
+		
+		var inputArr = $("input[type=text]");
+		// 도서목록을 보여주는 Ajax요청이 등록, 수정, 삭제 때도 필요하니 이 기능을 메소드로 만들어놓고 호출
+		
+		// var listBook = function() {}
+		function listBook() {	// function에 이름을 지어줄 수 있음, 자바로 치면 접근제어자+접근제어타입+반환타입의 역할을 함
+			$("#tb").html("<tr><th>도서번호</th><th>도서명</th><th>출판사</th><th>가격</th></tr>");
+			// empty()하면 맨 위에도 지워지므로
+			
+			$.getJSON("listBook.do", function(data) {			// 데이터에 있는만큼 루프를 돌림
+				arr = data;
+				$.each(data, function(idx, b) {
+					var tr = $("<tr></tr>").attr("idx", idx);
+					$(tr).click(function() {
+						$("tr").removeClass("active");
+						$(tr).addClass("active");						
+						var idx = $(this).attr("idx");
+						var book = arr[idx];
+						var i = 0;
+						$.each(book, function(key, value) {
+							$(inputArr[i++]).val(value);
+						});
+					});
+					$.each(b, function(key, value) {			// 내용은 value,
+						var td = $("<td></td>").html(value);	// key는 bookid, bookname, publisher, price
+						$(tr).append(td);
+					});
+					$("#tb").append(tr);
+				});
+			});
+		} // end function
+		
+		listBook();
+		
+		$("#btnAdd").click(function () {
+			var book = $("#f").serialize();	// button은 값 반환을 하지 않기 때문에 serialize()를 통해 form의 객체들을 텍스트화 하고 결과값을 반환함
+			$.ajax("insertBook", {data:book, success:function(r) {
+				listBook();
+			}});
+			$(inputArr).each(function(idx, item) {
+				$(this).val("");
+			});
+		});
+		
+		$("#btnUpdate").click(function () {
+			var book = $("#f").serialize();
+			$.ajax("updateBook", {data:book, success:function(r) {
+				listBook();
+			}});
+			$(inputArr).each(function(idx, item) {
+				$(this).val("");
+			});
+		});
+		
+		$("#btnDelete").click(function () {
+			var book = $("#f").serialize();
+			$.ajax("deleteBook", {data:book, success:function(r) {
+				listBook();
+			}});
+			$(inputArr).each(function(idx, item) {
+				$(this).val("");
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<table id="tb" border="1">
+		<tr>
+			<th>도서번호</th>
+			<th>도서명</th>
+			<th>출판사</th>
+			<th>가격</th>
+		</tr>
+	</table>
+	
+	<form id="f">
+		도서번호 : <input type="text" id="bookid" name="bookid"><br>
+		도서이름 : <input type="text" id="bookname" name="bookname"><br>
+		출판사명 : <input type="text" id="publisher" name="publisher"><br>
+		도서가격 : <input type="text" id="price" name="price"><br>
+	</form>
+	<input type="button" value="등록" id="btnAdd">
+	<input type="button" value="수정" id="btnUpdate">
+	<input type="button" value="삭제" id="btnDelete">
+</body>
+</html>

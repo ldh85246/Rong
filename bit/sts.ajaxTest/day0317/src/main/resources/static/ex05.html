@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn").click(function() {
+			$.ajax("listDeptXML.do", {success:function(data) {
+				var arr = $(data).find("dept");
+				$.each(arr, function(idx, dept) {
+					var dno = $(this).find("dno").text();
+					var dname = $(this).find("dname").text();
+					var dloc = $(this).find("dloc").text();
+					var p = $("<p></p>").html(dno + " / " + dname + " / " + dloc);
+					$("#deptList").append(p);
+				});
+			}});
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="deptList"></div>
+	<button id="btn">부서목록 읽어오기</button>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- configuration은 db, mapper, vo랑 연결이 되어 있음 -->
+<!-- 또한, 타입에 따라 결과값을 담아줌 -->
+<configuration>
+	<properties resource="com/example/demo/db/db.properties" />
+<!-- 	항상 configuration 아래 바로 생성해줘야 한다. -->
+	
+	<typeAliases>
+		<typeAlias type="com.example.demo.vo.GoodsVo"
+			alias="goodsVo" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/example/demo/db/goodsMapper.xml" />
+<!-- 		자바가 아닌 경우에는 항상 /로 경로를 표기해줘야 한다. -->
+	</mappers>
+</configuration>

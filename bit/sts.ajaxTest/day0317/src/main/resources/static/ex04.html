@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn").click(function() {
+			$.ajax("people.xml", {success:function(data) {	// xml을 data에 담고 객체화
+				var arr = $(data).find("person");	// 모든 person을 arr에 담아줘(자동으로 배열로 변경)
+				$.each(arr, function(idx, item) {
+					var name = $(this).find("name").text();
+					var gender = $(this).find("gender").text();
+					var part = $(this).find("part").text();
+					
+					var ul = $("<ul></ul>");
+					
+					$("#list").append($("<li></li>").html(name));
+					$("#list").append($("<li></li>").html(gender));
+					$("#list").append($("<li></li>").html(part));
+					
+					$("#list").append(ul);
+				});
+			}});
+		});
+	});
+</script>
+</head>
+<body>
+	<ul id="List"></ul>
+	<button id="btn">xml 읽어오기</button>
+</body>
+</html>

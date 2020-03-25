@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 아이디로 접속시 이벤트 호출
+		$("#btnSI").click(function() {
+			var id = {mem_id:$("#input").val()};
+			
+			// 접속시 주식 리스트 출력
+			$.ajax("/signIn", {type:"post", data:id, success:function(data) {
+				if(data.mem_id != "null") {
+					$("body").empty();
+					var tb = $("<table></table>");
+					$(tb).attr("border", "1");
+					$(tb).attr("width", "80%");
+					var tdData1 = $("<td/>").html("종목명");
+					var tdData2 = $("<td/>").html("현재가");
+					var trData = $("<tr></tr>").append(tdData1, tdData2);
+					$(tb).append(trData);
+					
+					// 테이블 안에 데이터 출력
+					$.ajax("/listStock", {success:function(list) {
+						$.each(list, function(idx, item) {
+							var tdList1 = $("<td/>").html(item.stock_name);
+							var tdList2 = $("<td/>").html(item.stock_price);
+							var trList = $("<tr/>").append(tdList1, tdList2);
+							$(trList).attr("idx", idx + 1);
+							$(tb).append(trList);
+							$("body").append(tb);
+							
+							// 선택된 종목명의 이벤트 호출
+							$(trList).click(function () {
+								var ds = $(this).attr("idx");
+								var s = {stock_no : ds};	// ds의 별명
+								
+								// 선택시 상세 리스트 출력
+								$.ajax("/detailStock", {data:s ,success:function(vo) {
+									var tb = $("<table></table>");
+									$(tb).attr("border", "1");
+									$(tb).attr("width", "80%");
+									var td1 = $("<td/>").html("종목명");
+									var td2 = $("<td/>").html("현재가");
+									var td3 = $("<td/>").html("상한가");
+									var td4 = $("<td/>").html("하한가");
+									var tr = $("<tr></tr>").append(td1, td2, td3, td4);
+									$(tb).append(tr);
+									$("body").append(tb);
+								}});
+							});
+						});
+					}});
+				}}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>로그인</h2>
+	아이디 : <input id="input" type="text">
+	<input id="btnSI" type="button" value="접속">
+</body>
+</html>

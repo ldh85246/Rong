@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods">
+
+  <select id="selectAll" resultType="goodsVo">
+    select * from goods
+  </select>
+  
+  <insert id="insert">
+  	insert into goods values(seq_goods.nextval, #(item), #(price), #(qty), #(fname), #(detail))
+  </insert>
+  
+  <select id="getGoods" resultType="goodsVo">
+  	select * from goods where no = #{no}
+  </select>
+  
+  <update id="update">
+  	update goods set item = #{item}, price = #(price), qty = #(qty), fname = #(fname), detail = #(detail) where no = #{no}
+  </update>
+  
+  <delete id="delete">
+  	delete goods where no = #{no}
+  </delete>
+  
+  <select id = "totalRecord" resultType="java.lang.Integer">
+  	select count(*) from goods
+  </select>
+  
+</mapper>

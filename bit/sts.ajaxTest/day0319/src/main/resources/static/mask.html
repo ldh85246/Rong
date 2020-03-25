@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+li {
+	list-style: inherit;
+}
+
+.high_light {
+	background: aqua;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+		var arr;
+		
+		$.ajax("mask.do", {success : function(data) {
+			arr = data;
+			$.each(arr, function(idx, mask) {
+				var li = $("<li></li>").html(mask.name + "(" + mask.price + "원").attr("url", mask.url);
+				$("#maskList").append(li);
+				
+				$(li).hover(function() {
+					$(this).addClass("high_light");
+				}, function() {
+					$(this).removeClass("high_light");
+				});
+				
+				$(li).click(function(idx, item) {
+					var base = "https://www.coupang.com/";
+					location.href = base + $(this).attr("url");
+				});
+			});
+		}});
+	});
+</script>
+</head>
+<body>
+	<ul id="maskList"></ul>
+</body>
+</html>

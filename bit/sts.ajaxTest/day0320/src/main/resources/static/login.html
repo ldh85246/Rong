@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#my_form").submit(function(event) {
+		var member = $("#my_form").serializeArray();
+		//객체형태로 띈 문자열을 만들어주는 건 serialize, 객체형태로 만들어주는 건 serializeArray
+		
+		var str = $.param(member);	//member를 쿼리스트링으로 만들어줌
+		console.log(str);
+		var url = "/ActionWithData?" + str;
+		$("wrap").load(url);
+		
+		//컨트롤러에 적어둔 ActionWithData
+// 		$.ajax("/ActionWithData", {data:member, success:function(r) {
+// 			$("#wrap").html(r);
+// 		}});
+		
+		event.preventDefault();		//기본 이벤트를 제거해줌 (안가고 머무른다)
+	});
+});
+</script>
+</head>
+<body>
+	<form id="my_form" action="login.do" method="post">
+		<table>
+			<tr>
+				<!-- 누구에대한 설명인지 쉽게 찾기 위해 label를 해줌 -->
+				<td><label for="name">name</label></td>
+				
+				<!-- for -> name을 위한 라벨이다 라는 의미 -->
+				<td><input type="text" id="name" name="name"></td>
+			</tr>
+			<tr>
+				<td><label for="age">age</label></td>
+				<td><input type="text" id="age" name="age"></td>
+			</tr>
+			<input type="submit" value="Get Ajax String">
+		</table>
+		
+		<div id="wrap"></div>
+	</form>
+</body>
+</html>
