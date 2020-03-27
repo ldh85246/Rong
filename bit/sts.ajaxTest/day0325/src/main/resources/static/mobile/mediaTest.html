@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btnPlayAudio").click(function() {
+			var audio = document.getElementById("audio");
+			audio.play();
+		});
+		$("#btnStopAudio").click(function() {
+			var audio = document.getElementById("audio");
+			audio.pause();
+		});
+		
+		$("#btnPlayVideo").click(function() {
+			var audio = document.getElementById("video");
+			video.play();
+		});
+		$("#btnStopVideo").click(function() {
+			var audio = document.getElementById("video");
+			video.pause();
+		});
+	});
+</script>
+</head>
+<body>
+	<button id="btnPlayAudio">오디오 재생</button>
+	<button id="btnStopAudio">일시정지</button>
+	<hr>
+	<audio id="audio" src="/media/song.mp3"></audio>
+	<br><br>
+	<button id="btnPlayVideo">비디오 재생</button>
+	<button id="btnStopVideo">일시정지</button>
+	<video id="video" src="/media/my.mp4"></video>
+</body>
+</html>

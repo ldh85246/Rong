@@ -12,4 +12,8 @@ public class GoodsDao {
 	public List<GoodsVo> listAll() {
 		return DBManager.listAll();
 	}
+
+	public int insertGoods(GoodsVo g) {
+		return DBManager.insertBook(g);
+	}
 }

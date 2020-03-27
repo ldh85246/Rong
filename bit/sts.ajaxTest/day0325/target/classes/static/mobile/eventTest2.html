@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0. minimum-scale=1.0, user-scalable=no" />
+<link rel="shortcut icon" href="/mobile/img/icon.jpg" />	<!-- 안드로이드 -->
+<link rel="apple-touch-icon" href="/mobile/img/icon.jpg" />	<!-- 아이폰-->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#orangePage").bind("swipeleft", function() {
+			$.mobile.changePage("#bluePage", {
+				transition : "slide"
+			});
+		});
+
+		$("#orangePage").bind("swiperight", function() {
+			$.mobile.changePage("#greenPage", {
+				transition : "slide",
+				reverse : true
+			});
+		});
+
+		$("#bluePage").bind("swipeleft", function() {
+			$.mobile.changePage("#greenPage", {
+				transition : "slide"
+			});
+		});
+
+		$("#bluePage").bind("swiperight", function() {
+			$.mobile.changePage("#orangePage", {
+				transition : "slide",
+				reverse : true
+			});
+		});
+
+		$("#greenPage").bind("swipeleft", function() {
+			$.mobile.changePage("#orangePage", {
+				transition : "slide"
+			});
+		});
+
+		$("#greenPage").bind("swiperight", function() {
+			$.mobile.changePage("#bluePage", {
+				transition : "slide",
+				reverse : true
+			});
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div data-role="page" id="orangePage">
+		<div data-role="header">
+			<h1>이벤트 연습</h1>
+		</div>
+
+		<div data-role="content"
+			style="background-color: orange; height: 150px"></div>
+
+		<div data-role="footer" data-position="fixed">
+			<h1>서울시 마포구 신수동</h1>
+		</div>
+	</div>
+
+	<div data-role="page" id="bluePage">
+		<div data-role="header">
+			<h1>이벤트 연습</h1>
+		</div>
+
+		<div data-role="content" style="background-color: blue; height: 150px">
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h1>서울시 마포구 신수동</h1>
+		</div>
+	</div>
+
+	<div data-role="page" id="greenPage">
+		<div data-role="header">
+			<h1>이벤트 연습</h1>
+		</div>
+
+		<div data-role="content"
+			style="background-color: green; height: 150px"></div>
+
+		<div data-role="footer" data-position="fixed">
+			<h1>서울시 마포구 신수동</h1>
+		</div>
+	</div>
+</body>
+</html>

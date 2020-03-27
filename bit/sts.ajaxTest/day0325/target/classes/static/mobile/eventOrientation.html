@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0. minimum-scale=1.0, user-scalable=no" />
+<link rel="shortcut icon" href="/img/icon.jpg" />		<!-- 안드로이드 -->
+<link rel="apple-touch-icon" href="/img/icon.jpg" />	<!-- 아이폰-->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		if(window.orientation == 0) {	// 세로방향
+			$("#backImg").attr("src", "/img/ball1.jpg");
+		} else {						// 가로방향
+			$("#backImg").attr("src", "/img/cloth1.jpg");
+		}
+		$(window).bind("orientationchange", function(event) {	// 방향전환 이벤트 발생 시
+			if(event.orientation == "portrait") {
+				$("#backImg").attr("src", "/img/ball1.jpg");
+			} else {					// 가로방향
+				$("#backImg").attr("src", "/img/cloth1.jpg");
+			}
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header"><h1>상품목록</h1></div>
+		<div data-role="content">
+			<img id="backImg">
+		</div>
+		<div data-role="footer" data-position="fixed">비트몰</div>
+	</div>
+</body>
+</html>

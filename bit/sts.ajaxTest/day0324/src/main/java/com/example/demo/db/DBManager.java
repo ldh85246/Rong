@@ -29,4 +29,13 @@ public class DBManager {
 		session.close();
 		return list;
 	}
+
+	public static int insertBook(GoodsVo g) {
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("goods.insert", g);
+		session.commit();
+		session.close();
+		return re;
+	}
 }
