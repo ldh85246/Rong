@@ -22,6 +22,6 @@
   <mappers>
     <mapper resource="com/bit/db/CustomerMapper.xml"/>
     <mapper resource="com/bit/db/BookMapper.xml"/>
-    <mapper resource="com/bit/db/OdersMapper.xml"/>
+    <mapper resource="com/bit/db/OrdersMapper.xml"/>
   </mappers>
 </configuration>
