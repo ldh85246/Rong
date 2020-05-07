@@ -1,0 +1,4 @@
+C:\vue_node_oracle>npm install express@3.4.7
+C:\vue_node_oracle>npm install oracledb
+C:\vue_node_oracle>npm install --save axios
+C:\vue_node_oracle>npm install mongodb --save
