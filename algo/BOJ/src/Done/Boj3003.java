@@ -2,7 +2,7 @@ package Done;
 
 import java.util.Scanner;
 
-public class Boj3003 {
+public class BOJ3003 {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -12,5 +12,6 @@ public class Boj3003 {
 			arr[i] = sc.nextInt();
 			System.out.print(chess[i] - arr[i] + " ");
 		}
+		sc.close();
 	}
 }

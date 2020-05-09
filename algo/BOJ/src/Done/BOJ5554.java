@@ -1,8 +1,8 @@
-package ing;
+package Done;
 
 import java.util.Scanner;
 
-public class Main {
+public class BOJ5554 {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

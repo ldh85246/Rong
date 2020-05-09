@@ -1,6 +1,6 @@
 package Done;
 
-public class Boj5339 {
+public class BOJ5339 {
 	
 	public static void main(String[] args) {
 		System.out.println(
